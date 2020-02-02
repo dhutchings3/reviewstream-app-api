@@ -1,7 +1,31 @@
-const app = require('./app')
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const {CLIENT_ORIGIN} = require('./config');
 
-const { PORT } = require('./config')
 
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`)
+const app = express()
+
+const morganOption = (NODE_ENV === 'production'
+  ? 'tiny'
+  : 'common')
+
+app.use(morgan(morganOption))
+app.use(cors())
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!')
 })
+
+app.use(function errorHandler(error, req, res, next) {
+  let response
+  if(NODE_ENV === 'production') {
+    response = { error: { message: 'server error' } }
+  } else {
+    console.error(error)
+    response = { message: error.message, error }
+  }
+  res.status(500).json(response)
+})
+
+module.exports = app
