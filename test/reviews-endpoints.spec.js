@@ -113,7 +113,7 @@ describe(`Reviews service object`, function() {
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
           // .expect(200, testReview)
           .expect(res => {
-              console.log(res.body, 'reviewtest')
+              // console.log(res.body, 'reviewtest')
               expect(res.body).to.eql(testReview)
           })
           .expect(200)
