@@ -59,7 +59,7 @@ describe(`Reviews service object`, function() {
       review: 'It was ok, other seasons were better.',
       rating: 3
     }
-    console.log(newReview, 'new Review ')
+
   return supertest(app)
     .post('/api/reviews')
     .set('Content-Type', 'application/json')
@@ -90,7 +90,6 @@ describe(`Reviews service object`, function() {
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
           .expect(200, testReviews)
     })
-    console.log(testUsers[0], 'test for user time stamp')
   })
  })
 
@@ -109,11 +108,15 @@ describe(`Reviews service object`, function() {
       it('responds with 200 and the specified review', () => {
         const reviewId = 1
         const testReview = testReviews[0]
-        console.log(reviewId, 'review id')
         return supertest(app)
           .get(`/api/reviews/${reviewId}`)
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
-          .expect(200, testReview)
+          // .expect(200, testReview)
+          .expect(res => {
+              console.log(res.body, 'reviewtest')
+              expect(res.body).to.eql(testReview)
+          })
+          .expect(200)
     })
   })
  })

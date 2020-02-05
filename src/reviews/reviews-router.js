@@ -51,7 +51,7 @@ reviewsRouter
             error: { message: "Review does not exist"}
           })
         }
-        res.reivew = review
+        res.review = review
         next()
       })
       .catch(next)
