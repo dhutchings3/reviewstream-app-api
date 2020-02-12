@@ -11,7 +11,8 @@ usersRouter
     for (const field of [ 'user_name', 'first_name', 'password'])
       if (!req.body[field])
         return res.status(400).json({
-          error: `Missing '${field}' in request body`
+          // error: `Missing '${field}' in request body`
+          error: `Please fill in all fields`
         })
 
     const passwordError = UsersService.validatePassword(password)

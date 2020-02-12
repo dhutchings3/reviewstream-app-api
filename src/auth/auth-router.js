@@ -10,7 +10,7 @@ authRouter
     for (const [key, value] of Object.entries(loginUser))
       if (value == null)
         return res.status(400).json({
-          error: `Missing '${key}' in request body`
+          error: `Must include all fields`
         })
 
     AuthService.getUserByUsername(
@@ -34,6 +34,7 @@ authRouter
             const payload = { user_id: dbUser.id }
             res.send({
               authToken: AuthService.createJwt(sub, payload),
+              userId: dbUser.id
             })
           })
       })
