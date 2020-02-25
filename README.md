@@ -13,6 +13,8 @@ Reviewstream API was built using Node, Express and Knex. The database was built 
 ## Client Repo
 https://github.com/dhutchings3/reviewstream-app
 
+![image](https://github.com/dhutchings3/reviewstream-app-api/blob/master/app.png)
+
 # Using this API
 
 ## Add User
